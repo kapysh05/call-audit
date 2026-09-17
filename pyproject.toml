@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "call-audit"
+version = "0.1.0"
+description = "Local call-centre quality analytics: ASR + LLM scoring of support calls into an Excel report."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+keywords = ["asr", "whisper", "llm", "call-center", "quality-assurance", "speech"]
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Office/Business",
+]
+dependencies = [
+    "pandas>=2.0",
+    "pyarrow>=14",
+    "openpyxl>=3.1",
+    "mutagen>=1.47",
+    "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+# Transcription pulls in CTranslate2 and the model runtime; the rest of the
+# pipeline (index, sample, report) works without it.
+asr = ["faster-whisper>=1.0"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+call-audit = "call_audit.cli:entrypoint"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+call_audit = ["default.toml"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

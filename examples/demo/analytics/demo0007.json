@@ -1,0 +1,59 @@
+{
+  "call_id": "demo0007",
+  "operator": "Marco P.",
+  "direction": "incoming",
+  "duration_sec": 276,
+  "model": "demo-fixture",
+  "prompt_version": "1.0",
+  "elapsed_sec": 196.1,
+  "tokens_in": 2319,
+  "tokens_out": 382,
+  "tokens_per_sec": 4.9,
+  "issues": [],
+  "analysis": {
+    "theme": "Billing and tariffs",
+    "theme_detail": "Customer asked why the invoice grew after adding two seats.",
+    "language": "en",
+    "resolved": "partial",
+    "resolution_summary": "Customer asked why the invoice grew after adding two seats.",
+    "scores": {
+      "greeting": 5,
+      "empathy": 7,
+      "product_knowledge": 5,
+      "communication_clarity": 6,
+      "problem_solving": 6,
+      "script_adherence": 6
+    },
+    "overall_score": 5.83,
+    "customer_emotion_start": "angry",
+    "customer_emotion_end": "neutral",
+    "operator_strengths": [
+      "Found the cause quickly",
+      "Offered a written breakdown"
+    ],
+    "operator_weaknesses": [
+      "Did not apologise for the missing notification",
+      "Left the customer without a next step for a refund request"
+    ],
+    "uncertainty_signs": [
+      "Hesitated when asked whether proration can be disabled"
+    ],
+    "missed_opportunities": [
+      "Did not apologise for the missing notification"
+    ],
+    "product_issues": [
+      "Adding seats does not trigger any notification about the prorated charge"
+    ],
+    "knowledge_gaps": [
+      "Whether proration can be turned off for annual plans"
+    ],
+    "script_gaps": [
+      "No script branch for billing complaints that need a refund"
+    ],
+    "training_recommendations": [
+      "Practise billing objections",
+      "Learn the proration rules"
+    ]
+  },
+  "raw_if_parse_failed": null
+}

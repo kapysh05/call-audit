@@ -1,0 +1,100 @@
+# Example: a bilingual (Russian / Kazakh) support desk for a document-workflow
+# platform, reporting in Russian.
+#
+#   call-audit --config config/example-multilingual.toml show-prompt
+#
+# Only the keys that differ from the defaults are listed — everything else is
+# inherited from call_audit/default.toml.
+
+[paths]
+audio_root = "D:/recordings"
+
+[filename]
+# This PBX writes: 17-04-2026_10-32_77011234567_incoming_7172000000_user_Aida.mp3
+on_no_match = "mtime"
+
+[[filename.patterns]]
+name = "pbx_incoming"
+regex = '''^(?P<ts>\d{2}-\d{2}-\d{4}_\d{2}-\d{2})_(?P<client>\d+)_(?P<direction>incoming)_(?P<dest>\d+)_user_(?P<operator>[^.]*)$'''
+timestamp_format = "%d-%m-%Y_%H-%M"
+
+[[filename.patterns]]
+name = "pbx_outgoing"
+regex = '''^(?P<ts>\d{2}-\d{2}-\d{4}_\d{2}-\d{2})_(?P<client>\d+)_(?P<direction>outgoing)_+user_(?P<operator>[^.]*)$'''
+timestamp_format = "%d-%m-%Y_%H-%M"
+
+[sampling]
+per_operator = 40
+min_duration_sec = 30
+# Leave empty to score everyone, or list the agents whose calls should count —
+# useful when the recordings folder also contains other departments.
+operators = []
+
+[asr]
+model = "medium"          # smaller models lose Kazakh badly
+compute_type = "int8"
+
+[llm]
+model = "qwen2.5:7b-instruct"
+num_ctx = 16384
+
+[domain]
+role = "старший супервайзер контакт-центра техподдержки"
+business = "B2B-платформа электронного документооборота"
+business_details = "Платформа закрывает электронные договоры, накладные, электронную подпись и регистрацию юрлиц."
+customers = "предприниматели, бухгалтеры, юристы и закупщики"
+languages = ["ru", "kk"]
+output_language = "ru"
+mono_recording = true
+themes = [
+  "Регистрация",
+  "Электронная подпись и пароли",
+  "Электронные накладные",
+  "Тарифы и оплата",
+  "Email-уведомления",
+  "IP-телефония",
+  "Другое",
+]
+# The ASR mangles the product name and common Kazakh words; tell the model so it
+# does not read a recognition error as an operator mistake.
+asr_hints = [
+  "the product name is transcribed several different ways — treat all spellings as the same product",
+  "Kazakh courtesy words appear transliterated and may look like nonsense",
+]
+
+# An extra criterion on top of the defaults: the six default criteria are
+# replaced wholesale, so list every criterion you want.
+[[rubric.criteria]]
+key = "greeting"
+title = "Приветствие"
+description = "Поздоровался, представился и назвал компанию."
+
+[[rubric.criteria]]
+key = "empathy"
+title = "Эмпатия"
+description = "Реагирует на эмоцию клиента, а не игнорирует её."
+
+[[rubric.criteria]]
+key = "product_knowledge"
+title = "Знание продукта"
+description = "Отвечает по существу, а не отправляет 'уточню и перезвоню'."
+
+[[rubric.criteria]]
+key = "communication_clarity"
+title = "Чёткость речи"
+description = "Говорит структурно и проверяет, что клиент понял."
+
+[[rubric.criteria]]
+key = "problem_solving"
+title = "Решение проблемы"
+description = "Довёл вопрос до результата или дал конкретный следующий шаг."
+
+[[rubric.criteria]]
+key = "script_adherence"
+title = "Следование скрипту"
+description = "Держится скрипта поддержки, адаптируя его под ситуацию."
+
+[[rubric.criteria]]
+key = "data_handling"
+title = "Работа с данными клиента"
+description = "Проверяет личность до изменений и не проговаривает лишние данные вслух."

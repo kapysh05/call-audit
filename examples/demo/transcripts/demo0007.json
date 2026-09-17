@@ -1,0 +1,24 @@
+{
+  "call_id": "demo0007",
+  "meta": {
+    "call_id": "demo0007",
+    "operator": "Marco P.",
+    "direction": "incoming",
+    "timestamp": "2026-04-07 09:15:00",
+    "duration_sec_file": 276
+  },
+  "language": "en",
+  "language_prob": 0.94,
+  "duration_sec": 276,
+  "transcribe_sec": 236.96,
+  "rtf": 0.83,
+  "redacted": true,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 276.0,
+      "text": "Support desk, Marco speaking. — Our invoice went up and nobody told us why. — Let me look. You added two seats on the 3rd, so the plan was prorated for the rest of the month. — Nobody warned us about that. — I am sorry, I understand. I can send the breakdown to [EMAIL] so you can check it line by line. — Fine, send it."
+    }
+  ],
+  "text": "Support desk, Marco speaking. — Our invoice went up and nobody told us why. — Let me look. You added two seats on the 3rd, so the plan was prorated for the rest of the month. — Nobody warned us about that. — I am sorry, I understand. I can send the breakdown to [EMAIL] so you can check it line by line. — Fine, send it."
+}

@@ -1,0 +1,24 @@
+{
+  "call_id": "demo0002",
+  "meta": {
+    "call_id": "demo0002",
+    "operator": "Priya S.",
+    "direction": "incoming",
+    "timestamp": "2026-04-06 17:15:00",
+    "duration_sec_file": 163
+  },
+  "language": "en",
+  "language_prob": 0.947,
+  "duration_sec": 163,
+  "transcribe_sec": 142.16,
+  "rtf": 0.86,
+  "redacted": true,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 163.0,
+      "text": "Hello, support. — I signed the delivery note two days ago and the other side still does not see it. — Let me check the document status. It is signed on your side and waiting for the counterparty to accept it. — So it is stuck? — It is waiting, not stuck. They have to open it from their inbox. — And how would I know that? Nothing says so. — I agree it is not obvious."
+    }
+  ],
+  "text": "Hello, support. — I signed the delivery note two days ago and the other side still does not see it. — Let me check the document status. It is signed on your side and waiting for the counterparty to accept it. — So it is stuck? — It is waiting, not stuck. They have to open it from their inbox. — And how would I know that? Nothing says so. — I agree it is not obvious."
+}

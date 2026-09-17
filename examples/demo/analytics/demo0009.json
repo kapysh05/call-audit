@@ -1,0 +1,52 @@
+{
+  "call_id": "demo0009",
+  "operator": "Dana R.",
+  "direction": "outgoing",
+  "duration_sec": 343,
+  "model": "demo-fixture",
+  "prompt_version": "1.0",
+  "elapsed_sec": 370.6,
+  "tokens_in": 2455,
+  "tokens_out": 438,
+  "tokens_per_sec": 5.3,
+  "issues": [],
+  "analysis": {
+    "theme": "Integrations",
+    "theme_detail": "API key rejected after a scheduled rotation.",
+    "language": "en",
+    "resolved": "yes",
+    "resolution_summary": "API key rejected after a scheduled rotation.",
+    "scores": {
+      "greeting": 7,
+      "empathy": 8,
+      "product_knowledge": 7,
+      "communication_clarity": 8,
+      "problem_solving": 8,
+      "script_adherence": 7
+    },
+    "overall_score": 7.5,
+    "customer_emotion_start": "neutral",
+    "customer_emotion_end": "satisfied",
+    "operator_strengths": [
+      "Diagnosed from one symptom",
+      "Gave a concrete fix"
+    ],
+    "operator_weaknesses": [
+      "No greeting with the company name",
+      "Did not confirm whether other integrations use the same key"
+    ],
+    "uncertainty_signs": [],
+    "missed_opportunities": [
+      "No greeting with the company name"
+    ],
+    "product_issues": [
+      "Key rotation does not warn about integrations still using the previous key"
+    ],
+    "knowledge_gaps": [],
+    "script_gaps": [],
+    "training_recommendations": [
+      "Use the full greeting on every call"
+    ]
+  },
+  "raw_if_parse_failed": null
+}

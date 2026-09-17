@@ -1,0 +1,40 @@
+# ---------------------------------------------------------------------------
+# Call data never belongs in version control. Recordings, transcripts,
+# analyses and reports all contain customer speech and operator names.
+# ---------------------------------------------------------------------------
+data/
+*.parquet
+*.xlsx
+*.mp3
+*.wav
+*.m4a
+*.ogg
+*.opus
+*.flac
+!examples/**/*.json
+
+# Local configuration usually holds real paths and operator names.
+*.local.toml
+.env
+
+# Models and virtualenvs
+.models/
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+~$*

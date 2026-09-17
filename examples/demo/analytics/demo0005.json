@@ -1,0 +1,46 @@
+{
+  "call_id": "demo0005",
+  "operator": "Priya S.",
+  "direction": "incoming",
+  "duration_sec": 310,
+  "model": "demo-fixture",
+  "prompt_version": "1.0",
+  "elapsed_sec": 339.4,
+  "tokens_in": 1540,
+  "tokens_out": 495,
+  "tokens_per_sec": 3.3,
+  "issues": [],
+  "analysis": {
+    "theme": "Other",
+    "theme_detail": "Customer asked for training for a new employee.",
+    "language": "en",
+    "resolved": "yes",
+    "resolution_summary": "Customer asked for training for a new employee.",
+    "scores": {
+      "greeting": 9,
+      "empathy": 10,
+      "product_knowledge": 9,
+      "communication_clarity": 10,
+      "problem_solving": 9,
+      "script_adherence": 10
+    },
+    "overall_score": 9.5,
+    "customer_emotion_start": "neutral",
+    "customer_emotion_end": "satisfied",
+    "operator_strengths": [
+      "Full greeting",
+      "Offered more than was asked",
+      "Closed with a concrete commitment"
+    ],
+    "operator_weaknesses": [],
+    "uncertainty_signs": [],
+    "missed_opportunities": [],
+    "product_issues": [],
+    "knowledge_gaps": [],
+    "script_gaps": [],
+    "training_recommendations": [
+      "None — use this call as a good example in training"
+    ]
+  },
+  "raw_if_parse_failed": null
+}

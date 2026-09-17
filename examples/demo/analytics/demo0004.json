@@ -1,0 +1,61 @@
+{
+  "call_id": "demo0004",
+  "operator": "Marco P.",
+  "direction": "incoming",
+  "duration_sec": 136,
+  "model": "demo-fixture",
+  "prompt_version": "1.0",
+  "elapsed_sec": 213.0,
+  "tokens_in": 2100,
+  "tokens_out": 318,
+  "tokens_per_sec": 6.3,
+  "issues": [
+    "overall_score derived from criteria"
+  ],
+  "analysis": {
+    "theme": "Notifications",
+    "theme_detail": "Customer receives duplicate e-mails for every event.",
+    "language": "en",
+    "resolved": "no",
+    "resolution_summary": "Customer receives duplicate e-mails for every event.",
+    "scores": {
+      "greeting": 5,
+      "empathy": 6,
+      "product_knowledge": 4,
+      "communication_clarity": 4,
+      "problem_solving": 6,
+      "script_adherence": 5
+    },
+    "overall_score": 5.0,
+    "customer_emotion_start": "neutral",
+    "customer_emotion_end": "frustrated",
+    "operator_strengths": [
+      "Was honest about not knowing"
+    ],
+    "operator_weaknesses": [
+      "No timeframe, no ticket number, no follow-up plan",
+      "Let the customer end the call unhappy"
+    ],
+    "uncertainty_signs": [
+      "Admitted to never having seen the issue",
+      "Could not say when anyone would respond"
+    ],
+    "missed_opportunities": [
+      "No timeframe, no ticket number, no follow-up plan"
+    ],
+    "product_issues": [
+      "Duplicate notification e-mails for a single signature event"
+    ],
+    "knowledge_gaps": [
+      "What to do when an issue has to be escalated"
+    ],
+    "script_gaps": [
+      "No escalation script with an expected response time"
+    ],
+    "training_recommendations": [
+      "Train the escalation path",
+      "Always leave a ticket number"
+    ]
+  },
+  "raw_if_parse_failed": null
+}

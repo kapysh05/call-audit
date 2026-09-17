@@ -1,0 +1,166 @@
+# call-audit — default configuration.
+#
+# Every value here can be overridden by your own TOML file (`--config my.toml`)
+# or by environment variables (see `call_audit/config.py` -> ENV_OVERRIDES).
+# Your file only needs the keys you want to change; the rest is merged from here.
+
+[paths]
+# Root folder that holds the call recordings. Sub-folders are scanned recursively.
+audio_root = ""            # env: CALL_AUDIT_AUDIO_ROOT
+data_dir = "data"          # env: CALL_AUDIT_DATA_DIR — index/transcripts/analytics/reports live here
+model_cache = ".models"    # env: CALL_AUDIT_MODEL_CACHE
+
+[audio]
+extensions = ["mp3", "wav", "m4a", "ogg", "opus", "flac"]
+
+# ---------------------------------------------------------------------------
+# Filename parsing.
+#
+# Call recordings from a PBX usually encode metadata in the filename. Each
+# pattern is a regex with named groups; the first one that matches wins.
+# Recognised groups: ts, operator, client, direction, dest, call_id.
+# `timestamp_format` is a strptime format applied to the `ts` group.
+#
+# Anything a pattern does not capture falls back to a safe default, so an
+# unknown naming scheme still produces a usable index (see `on_no_match`).
+# ---------------------------------------------------------------------------
+[filename]
+# "mtime" — fall back to file modification time and operator "unknown".
+# "skip"  — drop files that match no pattern (reported as skipped).
+on_no_match = "mtime"
+unknown_operator = "unknown"
+
+[[filename.patterns]]
+name = "date_time_client_direction_user"
+regex = '''^(?P<ts>\d{2}-\d{2}-\d{4}_\d{2}-\d{2})_(?P<client>\d+)_(?P<direction>outgoing|incoming)_+user_(?P<operator>[^.]*)$'''
+timestamp_format = "%d-%m-%Y_%H-%M"
+
+[[filename.patterns]]
+name = "date_time_client_direction_dest_user"
+regex = '''^(?P<ts>\d{2}-\d{2}-\d{4}_\d{2}-\d{2})_(?P<client>\d+)_(?P<direction>outgoing|incoming)_(?P<dest>\d+)_user_(?P<operator>[^.]*)$'''
+timestamp_format = "%d-%m-%Y_%H-%M"
+
+[[filename.patterns]]
+name = "iso_operator_client"
+regex = '''^(?P<ts>\d{4}-\d{2}-\d{2}[_T]\d{2}-\d{2}-\d{2})[_-](?P<operator>[^_]+)[_-](?P<client>\+?\d+)$'''
+timestamp_format = "%Y-%m-%d_%H-%M-%S"
+
+[[filename.patterns]]
+name = "agent_epoch"
+regex = '''^(?P<call_id>[0-9a-f]{8,})[_-](?P<operator>[^_]+)[_-](?P<ts>\d{8}T\d{6})$'''
+timestamp_format = "%Y%m%dT%H%M%S"
+
+# ---------------------------------------------------------------------------
+# Privacy. Defaults are deliberately strict: raw customer identifiers never
+# reach disk, and transcripts are masked before they are sent to the model.
+# ---------------------------------------------------------------------------
+[privacy]
+store_raw_identifiers = false   # false -> phone numbers are stored as salted hashes
+hash_salt_env = "CALL_AUDIT_SALT"
+redact_transcripts = true       # mask phones / emails / card & ID numbers
+redact_in_reports = true
+
+[sampling]
+per_operator = 50               # max calls per operator
+min_duration_sec = 30           # skip anything shorter (usually missed calls)
+seed = 42
+operators = []                  # whitelist; empty = every operator found
+
+[asr]
+backend = "faster-whisper"
+model = "medium"                # tiny | base | small | medium | large-v3
+device = "cpu"                  # cpu | cuda
+compute_type = "int8"           # int8 on CPU, float16 on GPU
+cpu_threads = 8
+beam_size = 5
+vad_filter = true
+language = ""                   # empty = autodetect
+
+[llm]
+backend = "ollama"              # ollama | openai   (openai = any OpenAI-compatible endpoint)
+model = "qwen2.5:7b-instruct"
+temperature = 0.2
+num_ctx = 16384
+max_output_tokens = 1500
+base_url = ""                   # env: CALL_AUDIT_LLM_BASE_URL
+api_key_env = "CALL_AUDIT_API_KEY"
+timeout_sec = 900              # a 7B model on CPU can take minutes per call
+
+# ---------------------------------------------------------------------------
+# Domain. This is what makes the analysis yours: it is injected into the
+# system prompt. Replace it with your own product and your own call themes.
+# ---------------------------------------------------------------------------
+[domain]
+role = "a senior quality supervisor in a customer-support contact centre"
+business = "a B2B SaaS platform"
+business_details = "The platform serves business customers: billing, user accounts, integrations and documents."
+customers = "business owners, accountants and office managers"
+languages = ["en"]
+output_language = "en"          # language the model writes its free-text findings in
+mono_recording = true           # true -> tell the model speakers are not diarised
+themes = [
+  "Account access",
+  "Billing and tariffs",
+  "Documents",
+  "Integrations",
+  "Notifications",
+  "Other",
+]
+# Words the ASR reliably mangles — the model is told not to blame the operator
+# for these, e.g. product names spelled several different ways.
+asr_hints = []
+
+# ---------------------------------------------------------------------------
+# Scoring rubric. Criteria drive the prompt, the JSON schema AND the report
+# columns — add or remove one here and everything downstream follows.
+# ---------------------------------------------------------------------------
+[rubric]
+scale_min = 1
+scale_max = 10
+
+[[rubric.criteria]]
+key = "greeting"
+title = "Greeting"
+description = "Greets the customer and introduces themselves and the company."
+
+[[rubric.criteria]]
+key = "empathy"
+title = "Empathy"
+description = "Acknowledges the customer's emotion instead of ignoring or talking over it."
+
+[[rubric.criteria]]
+key = "product_knowledge"
+title = "Product knowledge"
+description = "Answers from real knowledge of the product rather than guessing or deflecting."
+
+[[rubric.criteria]]
+key = "communication_clarity"
+title = "Clarity"
+description = "Structured, concise speech; checks that the customer understood."
+
+[[rubric.criteria]]
+key = "problem_solving"
+title = "Problem solving"
+description = "Actually resolves the request, or gives a concrete next step."
+
+[[rubric.criteria]]
+key = "script_adherence"
+title = "Script adherence"
+description = "Follows the support script while adapting it to the situation."
+
+# Seniority bands, evaluated in order: the first band whose `max_score` is not
+# exceeded wins. Keep them sorted ascending.
+[[rubric.levels]]
+name = "junior"
+max_score = 6.0
+
+[[rubric.levels]]
+name = "middle"
+max_score = 7.5
+
+[[rubric.levels]]
+name = "senior"
+max_score = 10.0
+
+[report]
+top_n = 50                      # rows per frequency sheet (issues, gaps, ...)

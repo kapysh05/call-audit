@@ -1,0 +1,24 @@
+{
+  "call_id": "demo0011",
+  "meta": {
+    "call_id": "demo0011",
+    "operator": "Priya S.",
+    "direction": "incoming",
+    "timestamp": "2026-04-07 21:15:00",
+    "duration_sec_file": 320
+  },
+  "language": "en",
+  "language_prob": 0.94,
+  "duration_sec": 320,
+  "transcribe_sec": 310.41,
+  "rtf": 0.83,
+  "redacted": true,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 320.0,
+      "text": "Hello, support desk, Priya speaking, how can I help? — We hired a new accountant, can someone show her the portal? — I can send the onboarding guide and book a 30-minute session. — That would be great. — Booked for Thursday, the invite is on its way."
+    }
+  ],
+  "text": "Hello, support desk, Priya speaking, how can I help? — We hired a new accountant, can someone show her the portal? — I can send the onboarding guide and book a 30-minute session. — That would be great. — Booked for Thursday, the invite is on its way."
+}

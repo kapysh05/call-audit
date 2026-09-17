@@ -1,0 +1,24 @@
+{
+  "call_id": "demo0000",
+  "meta": {
+    "call_id": "demo0000",
+    "operator": "Dana R.",
+    "direction": "outgoing",
+    "timestamp": "2026-04-06 09:15:00",
+    "duration_sec_file": 260
+  },
+  "language": "en",
+  "language_prob": 0.987,
+  "duration_sec": 260,
+  "transcribe_sec": 259.33,
+  "rtf": 0.82,
+  "redacted": true,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 260.0,
+      "text": "Hello, support desk, my name is Dana, how can I help? — Hi, I cannot log in since yesterday, it keeps asking for a code sent to my old number [PHONE]. — I understand, that is frustrating. Let me verify the account and move the second factor to your new number. Can you confirm the company name on the account? — Yes, it is Harbour Logistics. — Thank you, I have reset it, you should get a code now. — Got it, I am in. Thank you."
+    }
+  ],
+  "text": "Hello, support desk, my name is Dana, how can I help? — Hi, I cannot log in since yesterday, it keeps asking for a code sent to my old number [PHONE]. — I understand, that is frustrating. Let me verify the account and move the second factor to your new number. Can you confirm the company name on the account? — Yes, it is Harbour Logistics. — Thank you, I have reset it, you should get a code now. — Got it, I am in. Thank you."
+}

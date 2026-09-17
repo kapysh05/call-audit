@@ -1,0 +1,33 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      # The ASR extra pulls in CTranslate2 and is not needed for the tests:
+      # everything except the transcription stage runs without it.
+      - name: Install
+        run: pip install -e ".[dev]"
+
+      - name: Generate the synthetic demo corpus
+        run: python examples/make_demo_data.py
+
+      - name: Test
+        run: pytest -q

@@ -1,0 +1,24 @@
+{
+  "call_id": "demo0009",
+  "meta": {
+    "call_id": "demo0009",
+    "operator": "Dana R.",
+    "direction": "outgoing",
+    "timestamp": "2026-04-07 13:15:00",
+    "duration_sec_file": 343
+  },
+  "language": "en",
+  "language_prob": 0.98,
+  "duration_sec": 343,
+  "transcribe_sec": 305.67,
+  "rtf": 0.94,
+  "redacted": true,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 343.0,
+      "text": "Support, how can I help? — Our integration stopped working this morning, every request comes back unauthorised. — Did you rotate the key recently? — Our admin did, last night. — Then the old key is still in your config. Replace it and restart the job. — That did it. Thanks."
+    }
+  ],
+  "text": "Support, how can I help? — Our integration stopped working this morning, every request comes back unauthorised. — Did you rotate the key recently? — Our admin did, last night. — Then the old key is still in your config. Replace it and restart the job. — That did it. Thanks."
+}

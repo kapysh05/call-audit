@@ -1,0 +1,52 @@
+{
+  "call_id": "demo0006",
+  "operator": "Dana R.",
+  "direction": "outgoing",
+  "duration_sec": 233,
+  "model": "demo-fixture",
+  "prompt_version": "1.0",
+  "elapsed_sec": 257.2,
+  "tokens_in": 2110,
+  "tokens_out": 285,
+  "tokens_per_sec": 6.3,
+  "issues": [],
+  "analysis": {
+    "theme": "Account access",
+    "theme_detail": "Customer locked out after changing their phone number.",
+    "language": "en",
+    "resolved": "yes",
+    "resolution_summary": "Customer locked out after changing their phone number.",
+    "scores": {
+      "greeting": 9,
+      "empathy": 9,
+      "product_knowledge": 9,
+      "communication_clarity": 8,
+      "problem_solving": 8,
+      "script_adherence": 9
+    },
+    "overall_score": 8.67,
+    "customer_emotion_start": "frustrated",
+    "customer_emotion_end": "satisfied",
+    "operator_strengths": [
+      "Named the company and themselves in the greeting",
+      "Acknowledged the customer's frustration before acting",
+      "Confirmed the fix worked before closing"
+    ],
+    "operator_weaknesses": [
+      "Did not explain how to avoid the same lockout next time"
+    ],
+    "uncertainty_signs": [],
+    "missed_opportunities": [
+      "Did not explain how to avoid the same lockout next time"
+    ],
+    "product_issues": [
+      "Second factor stays bound to an old phone number after the number is changed in the profile"
+    ],
+    "knowledge_gaps": [],
+    "script_gaps": [],
+    "training_recommendations": [
+      "Add a short prevention tip at the end of access calls"
+    ]
+  },
+  "raw_if_parse_failed": null
+}

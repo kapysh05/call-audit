@@ -1,0 +1,57 @@
+{
+  "call_id": "demo0008",
+  "operator": "Priya S.",
+  "direction": "incoming",
+  "duration_sec": 165,
+  "model": "demo-fixture",
+  "prompt_version": "1.0",
+  "elapsed_sec": 215.2,
+  "tokens_in": 1875,
+  "tokens_out": 448,
+  "tokens_per_sec": 3.8,
+  "issues": [],
+  "analysis": {
+    "theme": "Documents",
+    "theme_detail": "Signed document did not reach the counterparty.",
+    "language": "en",
+    "resolved": "partial",
+    "resolution_summary": "Signed document did not reach the counterparty.",
+    "scores": {
+      "greeting": 7,
+      "empathy": 8,
+      "product_knowledge": 7,
+      "communication_clarity": 6,
+      "problem_solving": 6,
+      "script_adherence": 6
+    },
+    "overall_score": 6.67,
+    "customer_emotion_start": "frustrated",
+    "customer_emotion_end": "neutral",
+    "operator_strengths": [
+      "Checked the real document status instead of guessing"
+    ],
+    "operator_weaknesses": [
+      "Did not offer to notify the counterparty",
+      "Closed the call without a clear next step"
+    ],
+    "uncertainty_signs": [
+      "Unsure whether a reminder can be sent from the portal"
+    ],
+    "missed_opportunities": [
+      "Did not offer to notify the counterparty"
+    ],
+    "product_issues": [
+      "Document status 'waiting for counterparty' is not visible to the sender"
+    ],
+    "knowledge_gaps": [
+      "How to send a reminder to a counterparty"
+    ],
+    "script_gaps": [
+      "No branch for 'the other side has not opened it'"
+    ],
+    "training_recommendations": [
+      "Walk through the document lifecycle with the product team"
+    ]
+  },
+  "raw_if_parse_failed": null
+}

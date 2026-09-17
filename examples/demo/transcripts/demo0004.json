@@ -1,0 +1,24 @@
+{
+  "call_id": "demo0004",
+  "meta": {
+    "call_id": "demo0004",
+    "operator": "Marco P.",
+    "direction": "incoming",
+    "timestamp": "2026-04-06 21:15:00",
+    "duration_sec_file": 136
+  },
+  "language": "en",
+  "language_prob": 0.964,
+  "duration_sec": 136,
+  "transcribe_sec": 144.51,
+  "rtf": 1.24,
+  "redacted": true,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 136.0,
+      "text": "Support desk, Marco. — I get three identical e-mails for every signature. — That is not expected. Are the addresses different? — No, the same one, three times. — I have not seen this before. I will pass it to the team and come back to you. — When? — I cannot promise a date, sorry."
+    }
+  ],
+  "text": "Support desk, Marco. — I get three identical e-mails for every signature. — That is not expected. Are the addresses different? — No, the same one, three times. — I have not seen this before. I will pass it to the team and come back to you. — When? — I cannot promise a date, sorry."
+}
