@@ -11,6 +11,8 @@ touching the rest.
 - [Data contracts](#data-contracts)
 - [Model response schema](#model-response-schema)
 - [Configuration keys](#configuration-keys)
+- [The workbook](#the-workbook)
+- [Troubleshooting](#troubleshooting)
 
 ## Commands
 
@@ -318,3 +320,33 @@ which is also the fullest documentation of each key.
 | Key | Default | Meaning |
 |---|---|---|
 | `top_n` | `50` | rows per frequency sheet |
+
+## The workbook
+
+| Sheet | Contents |
+|---|---|
+| `summary` | Plain-language digest of the run, including the caveats |
+| `operators` | The ranking: seniority band, per-criterion averages, resolution rates, emotion shifts, aggregated coaching notes |
+| `themes` | What customers call about, average score and resolution rate per theme |
+| `product_issues` | Defects customers described, by frequency |
+| `knowledge_gaps` | Questions operators could not answer |
+| `uncertainty` | Moments operators sounded unsure |
+| `script_gaps` | Situations the support script does not cover |
+| `calls` | One row per call, for audit |
+| `run_info` | Model, prompt version, rubric, sample size — how this workbook was produced |
+
+Every score column is generated from `[[rubric.criteria]]`, so the workbook
+follows whatever criteria your configuration defines.
+
+## Troubleshooting
+
+| Symptom | Cause and fix |
+|---|---|
+| `paths.audio_root is not set` | Pass `--audio-root`, export `CALL_AUDIT_AUDIO_ROOT`, or set it in your config file |
+| `no audio files under ...` | Wrong folder, or the extension is missing from `audio.extensions` |
+| Every operator is `unknown` | No filename pattern matched. Check the `index` summary and add a pattern under `[[filename.patterns]]` |
+| `sample is empty` | `--min-sec` is above every call's duration, or `sampling.operators` excludes everyone |
+| `cannot reach http://localhost:11434` | Ollama is not running. Start it, then `call-audit doctor` |
+| `analyze` reports `unparseable` | The model ignored the schema. Rerun with `--retry-failed`; if it persists, use a larger model or lower `llm.temperature` |
+| `Permission denied` on the `.xlsx` | The workbook is open in Excel. Close it and rerun `report` |
+| Transcription starts from scratch | The audio root moved, so `call_id` changed. Keep `paths.audio_root` stable — ids are derived relative to it |
