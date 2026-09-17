@@ -20,7 +20,7 @@ from __future__ import annotations
 import hashlib
 import os
 import re
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]{2,}")
 # 9+ consecutive digits: card numbers, national ids, account numbers.
@@ -33,15 +33,26 @@ PHONE_TOKEN = "[PHONE]"
 ID_TOKEN = "[ID]"
 
 
+def _separator_agnostic(value: str | Path) -> PurePosixPath:
+    """Read a path without caring which OS wrote it.
+
+    ``pathlib.Path`` is bound to the host: on Linux a Windows path is one long
+    filename, because nothing there splits on a backslash. Ids would then
+    change the moment a corpus indexed on Windows is processed on a Linux box —
+    exactly the case this id is supposed to survive.
+    """
+    return PurePosixPath(str(value).replace("\\", "/"))
+
+
 def call_id(path: str | Path, root: str | Path | None = None,
             length: int = 16) -> str:
     """Return a stable opaque id for a recording."""
-    p = Path(path)
+    p = _separator_agnostic(path)
     if root:
         try:
-            p = p.relative_to(Path(root))
+            p = p.relative_to(_separator_agnostic(root))
         except ValueError:
-            p = Path(p.name)
+            p = PurePosixPath(p.name)
     key = p.as_posix().lower()
     return hashlib.sha256(key.encode("utf-8")).hexdigest()[:length]
 

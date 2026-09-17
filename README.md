@@ -8,7 +8,7 @@ data ever leaves the host.
 
 ![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)
 ![License MIT](https://img.shields.io/badge/license-MIT-green)
-![tests 67 passing](https://img.shields.io/badge/tests-67%20passing-brightgreen)
+[![tests](https://github.com/kapysh05/call-audit/actions/workflows/tests.yml/badge.svg)](https://github.com/kapysh05/call-audit/actions/workflows/tests.yml)
 ![100% local](https://img.shields.io/badge/data-100%25%20local-informational)
 
 | | |
@@ -18,7 +18,7 @@ data ever leaves the host.
 | **Stack** | Python 3.11 · faster-whisper (ASR) · any local or OpenAI-compatible LLM · pandas + openpyxl |
 | **Hardware** | a laptop CPU, no GPU. 120 calls ≈ 17 h unattended, resumable after Ctrl+C |
 | **Configurable** | filename schemes, scoring rubric, call themes, output language — all TOML, zero code changes |
-| **Proof** | 67 tests, CI on 3.11 and 3.12, and a synthetic corpus so you can see the output with no audio and no model |
+| **Proof** | 67 tests, CI on Linux and Windows × Python 3.11/3.12, and a synthetic corpus so you can see the output with no audio and no model |
 
 ```
 recordings/          call-audit index        data/index/calls.parquet
@@ -62,7 +62,7 @@ Full command and data-format reference: [docs/REFERENCE.md](docs/REFERENCE.md).
 ### 1. Install
 
 ```bash
-git clone https://github.com/<you>/call-audit.git
+git clone https://github.com/kapysh05/call-audit.git
 cd call-audit
 python -m venv .venv
 
@@ -270,7 +270,8 @@ pytest -q
 
 67 tests covering filename parsing, config layering, the privacy helpers, the
 repair layer for malformed model answers, sampling, and the report build. None
-of them need a model or any audio, so CI runs the whole suite in seconds.
+of them need a model or any audio, so CI runs the whole suite in seconds on both
+Linux and Windows.
 
 ## License
 
